@@ -25,7 +25,8 @@ namespace KataTrainReservation
             if (request.SeatCount > freeSeats.Count*MAX_PERCENT_SEAT_FILL)
                 return null;
 
-            var reservedSeats = freeSeats.GetRange(0, request.SeatCount);            
+            var orderedSeats = freeSeats.OrderBy(x => x.Coach).ThenBy(x => x.SeatNumber).ToList();
+            var reservedSeats = orderedSeats.GetRange(0, request.SeatCount);            
             
             return new Reservation(request.TrainId, _bookingService.GetBookingId(), reservedSeats);
         }
