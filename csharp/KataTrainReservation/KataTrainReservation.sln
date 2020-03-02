@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1022
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataTrainReservationTests", "KataTrainReservationTests\KataTrainReservationTests.csproj", "{A933B6A0-CD6A-46D5-890A-E6BBF43F17B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataTrainReservation", "KataTrainReservation\KataTrainReservation.csproj", "{50D6E3BA-2EAE-49D6-8C9F-DF01DF4C3EA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A933B6A0-CD6A-46D5-890A-E6BBF43F17B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A933B6A0-CD6A-46D5-890A-E6BBF43F17B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A933B6A0-CD6A-46D5-890A-E6BBF43F17B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A933B6A0-CD6A-46D5-890A-E6BBF43F17B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50D6E3BA-2EAE-49D6-8C9F-DF01DF4C3EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50D6E3BA-2EAE-49D6-8C9F-DF01DF4C3EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50D6E3BA-2EAE-49D6-8C9F-DF01DF4C3EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50D6E3BA-2EAE-49D6-8C9F-DF01DF4C3EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80F71C4E-669E-4CFD-BC03-53E4C5754E87}
+	EndGlobalSection
+EndGlobal
