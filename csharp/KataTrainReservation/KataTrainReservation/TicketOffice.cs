@@ -8,10 +8,16 @@ namespace KataTrainReservation
 {
     public class TicketOffice
     {
+        private readonly ISeatService _seatService;
+
+        public TicketOffice(ISeatService seatService)
+        {
+            _seatService = seatService;
+        }
         
         public Reservation MakeReservation(ReservationRequest request)
         {
-            var seats = new List<Seat>() { new Seat("01", 1) };
+            var seats = _seatService.GetSeats(request.TrainId);
             return new Reservation(request.TrainId, string.Empty, seats);
         }
     }
