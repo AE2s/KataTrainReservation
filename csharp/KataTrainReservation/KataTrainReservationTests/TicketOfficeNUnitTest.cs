@@ -77,5 +77,44 @@ namespace KataTrainReservation
             Assert.AreEqual(reservationRequest.TrainId, makeReservation.TrainId);
             Assert.AreEqual(makeReservation.Seats.Count, reservationRequest.SeatCount);
         }
+
+        [Test]
+        public void Should_not_return_reservation_of_train_if_seat_count_greater_than_70_percent_seat_train_count()
+        {
+
+            string trainId = "train1";
+            ISeatService seatService = Substitute.For<ISeatService>();
+            seatService.GetAvailableSeats(trainId).Returns(
+                 new List<Seat>() { new Seat("01", 1), new Seat("01", 2)
+                , new Seat("01", 3), new Seat("01", 4), new Seat("01", 5), new Seat("01", 6)
+                , new Seat("01", 7), new Seat("01", 8), new Seat("01", 9), new Seat("01", 10)
+                 });
+            IBookingService bookingService = Substitute.For<IBookingService>();
+            bookingService.GetBookingId().Returns("RES1");
+            var reservationRequest = new ReservationRequest(trainId, 8);
+
+            var makeReservation = new TicketOffice(seatService, bookingService).MakeReservation(reservationRequest);
+
+            Assert.IsNull(makeReservation);
+        }
+
+        [Test]
+        public void Should_reserve_twice_when_seats_is_available()
+        {
+            string trainId = "train1";
+            ISeatService seatService = new SeatService();           
+            IBookingService bookingService = Substitute.For<IBookingService>();
+            bookingService.GetBookingId().Returns("RES1");
+            var firstReservationRequest = new ReservationRequest(trainId, 3);
+            var secondReservationRequest = new ReservationRequest(trainId, 4);
+
+            var makeFirstReservation = new TicketOffice(seatService, bookingService).MakeReservation(firstReservationRequest);
+            var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
+
+            Assert.AreEqual(3, seatService.GetAvailableSeats(trainId).Count);
+        }
     }
 }
+
+
+
