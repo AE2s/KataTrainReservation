@@ -6,6 +6,6 @@ namespace KataTrainReservation
 {
     public interface ISeatService
     {
-        List<Seat> GetSeats(string trainId);
+        List<Seat> GetAvailableSeats(string trainId);
     }
 }
