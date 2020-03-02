@@ -1,6 +1,7 @@
 using NSubstitute;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KataTrainReservation
 {
@@ -102,15 +103,16 @@ namespace KataTrainReservation
         public void Should_reserve_twice_when_seats_is_available()
         {
             string trainId = "train1";
-            ISeatService seatService = new SeatService();           
+            ISeatService seatService = new SeatService(new TrainSeatsMock());           
             IBookingService bookingService = Substitute.For<IBookingService>();
             bookingService.GetBookingId().Returns("RES1");
             var firstReservationRequest = new ReservationRequest(trainId, 3);
             var secondReservationRequest = new ReservationRequest(trainId, 4);
 
             var makeFirstReservation = new TicketOffice(seatService, bookingService).MakeReservation(firstReservationRequest);
-            var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
 
+            var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
+            var test = seatService.GetAvailableSeats(trainId);
             Assert.AreEqual(3, seatService.GetAvailableSeats(trainId).Count);
         }
     }
