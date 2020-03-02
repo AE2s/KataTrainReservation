@@ -9,11 +9,13 @@ namespace KataTrainReservation
     public class TicketOffice
     {
         private readonly ISeatService _seatService;
+        private readonly IBookingService _bookingService;
         private const double MAX_PERCENT_SEAT_FILL = 0.7;
 
-        public TicketOffice(ISeatService seatService)
+        public TicketOffice(ISeatService seatService, IBookingService bookingService)
         {
             _seatService = seatService;
+            _bookingService = bookingService;
         }
         
         public Reservation MakeReservation(ReservationRequest request)
@@ -24,8 +26,8 @@ namespace KataTrainReservation
                 return null;
 
             var reservedSeats = freeSeats.GetRange(0, request.SeatCount);            
-
-            return new Reservation(request.TrainId, string.Empty, reservedSeats);
+            
+            return new Reservation(request.TrainId, _bookingService.GetBookingId(), reservedSeats);
         }
     }
 }
