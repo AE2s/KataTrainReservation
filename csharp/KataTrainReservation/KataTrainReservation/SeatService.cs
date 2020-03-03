@@ -18,7 +18,7 @@ namespace KataTrainReservation
             seatsByTrain = _trainSeats.GetSeatsByTrain();
         }
 
-        public void ConfirmReservation(string trainId, List<Seat> seats)
+        public void ConfirmReservation(List<Seat> seats)
         {
             seatFilled.AddRange(seats);
         }

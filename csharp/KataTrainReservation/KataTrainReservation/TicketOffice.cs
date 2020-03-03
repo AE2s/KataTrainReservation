@@ -32,7 +32,7 @@ namespace KataTrainReservation
                 if (request.SeatCount <= seat.Count())
                 {
                     reservedSeats = seat.ToList().GetRange(0, request.SeatCount);
-                    _seatService.ConfirmReservation(request.TrainId, reservedSeats);
+                    _seatService.ConfirmReservation(reservedSeats);
                     return new Reservation(request.TrainId, _bookingService.GetBookingId(), reservedSeats);
                 }
             }

@@ -8,6 +8,6 @@ namespace KataTrainReservation
     {
         List<Seat> GetAvailableSeats(string trainId);
 
-        void ConfirmReservation(string trainId, List<Seat> seats);
+        void ConfirmReservation(List<Seat> seats);
     }
 }
