@@ -112,8 +112,24 @@ namespace KataTrainReservation
             var makeFirstReservation = new TicketOffice(seatService, bookingService).MakeReservation(firstReservationRequest);
 
             var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
-            var test = seatService.GetAvailableSeats(trainId);
+
             Assert.AreEqual(3, seatService.GetAvailableSeats(trainId).Count);
+        }
+
+        [Test]
+        public void Should_generate_different_booking_id_when_two_reservation_was_confirmed()
+        {
+            string trainId = "train1";
+            ISeatService seatService = new SeatService(new TrainSeatsMock());
+            IBookingService bookingService = new BookingService();           
+            var firstReservationRequest = new ReservationRequest(trainId, 3);
+            var secondReservationRequest = new ReservationRequest(trainId, 4);
+
+            var makeFirstReservation = new TicketOffice(seatService, bookingService).MakeReservation(firstReservationRequest);
+            var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
+
+           
+            Assert.AreNotEqual(makeFirstReservation.BookingId, makeSecondReservation.BookingId);
         }
     }
 }
