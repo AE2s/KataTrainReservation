@@ -14,7 +14,7 @@ namespace KataTrainReservation
             _seatService = seatService;
             _bookingService = bookingService;
         }
-        
+
         public Reservation MakeReservation(ReservationRequest request)
         {
             var freeSeats = _seatService.GetAvailableSeats(request.TrainId);
@@ -24,7 +24,8 @@ namespace KataTrainReservation
 
             var orderedSeats = freeSeats.OrderBy(x => x.Coach).ThenBy(x => x.SeatNumber).ToList();
             var reservedSeats = new List<Seat>();
-            foreach (var seat in orderedSeats.GroupBy(x=>x.Coach))
+            var coachs = orderedSeats.GroupBy(x => x.Coach);
+            foreach (var seat in coachs)
             {
                 if (request.SeatCount <= seat.Count())
                 {

@@ -3,19 +3,18 @@
 namespace KataTrainReservation
 {
     public class Coach : IEquatable<Coach>, IComparable<Coach>
-    {
-        private readonly string coachId;
+    {        
 
         public Coach(string coachId)
         {
-            this.coachId = coachId;
+            CoachId = coachId;
         }
 
         public string CoachId { get; }
 
         public int CompareTo(Coach other)
         {
-            return coachId.CompareTo(other.CoachId);
+            return CoachId.CompareTo(other.CoachId);
         }
 
         public override bool Equals(object obj)
@@ -27,12 +26,12 @@ namespace KataTrainReservation
         public bool Equals(Coach other)
         {
             return other != null &&
-                  coachId == other.coachId;
+                  CoachId == other.CoachId;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(coachId);
+            return HashCode.Combine(CoachId);
         }
     }
 }

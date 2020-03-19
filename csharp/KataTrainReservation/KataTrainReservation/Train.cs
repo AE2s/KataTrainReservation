@@ -7,8 +7,8 @@ namespace KataTrainReservation
     public class Train : IEquatable<Train>
     {
         public string TraindId { get; }
-        public List<Seat> Seats { get; set; }
-             
+        public List<Seat> Seats { get; }
+
 
         public Train(string trainId, List<Seat> seats)
         {
@@ -35,5 +35,5 @@ namespace KataTrainReservation
         }
     }
 
-   
+
 }

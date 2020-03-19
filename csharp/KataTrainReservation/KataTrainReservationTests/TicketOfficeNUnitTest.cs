@@ -130,6 +130,22 @@ namespace KataTrainReservation
            
             Assert.AreNotEqual(makeFirstReservation.BookingId, makeSecondReservation.BookingId);
         }
+
+        [Test]
+        public void Should_make_reservation_twice_even_if_coach_over_70()
+        {
+            string trainId = "train2";
+            ISeatService seatService = new SeatService(new TrainSeatsMock());
+            IBookingService bookingService = new BookingService();           
+            var firstReservationRequest = new ReservationRequest(trainId, 6);
+            var secondReservationRequest = new ReservationRequest(trainId, 4);
+
+            var makeFirstReservation = new TicketOffice(seatService, bookingService).MakeReservation(firstReservationRequest);
+
+            var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
+
+            Assert.AreEqual(10, seatService.GetAvailableSeats(trainId).Count);
+        }
     }
 }
 
