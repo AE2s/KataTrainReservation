@@ -1,29 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace KataTrainReservation
 {
     public class Train : IEquatable<Train>
     {
-        private readonly string trainId;
-        private List<Coach> coachs;
+        public string TraindId { get; }
+        public List<Seat> Seats { get; set; }
+             
 
-        public Train(string trainId)
+        public Train(string trainId, List<Seat> seats)
         {
-            this.trainId = trainId;
-            coachs = new List<Coach>();
-        }
-
-        public void AddCoachs(IEnumerable<Coach> coachsToAdd)
-        {
-            coachs.AddRange(coachsToAdd);
-        }
-
-        public void AddCoach(Coach coachToAdd)
-        {
-            coachs.Add(coachToAdd);
+            TraindId = trainId;
+            Seats = seats;
         }
 
         public override bool Equals(object obj)
@@ -34,14 +24,14 @@ namespace KataTrainReservation
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(trainId, coachs);
+            return HashCode.Combine(TraindId, Seats);
         }
 
         public bool Equals(Train train)
         {
             return train != null &&
-                   trainId == train.trainId &&
-                   coachs.SequenceEqual(train.coachs);
+                   TraindId == train.TraindId &&
+                   Seats.SequenceEqual(train.Seats);
         }
     }
 

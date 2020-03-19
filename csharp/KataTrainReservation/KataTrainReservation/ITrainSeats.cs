@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace KataTrainReservation
 {
     public interface ITrainSeats
     {
-        Dictionary<string, List<Seat>> GetSeatsByTrain();
+        List<Train> GetSeatsByTrain();
     }
 }

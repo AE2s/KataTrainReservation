@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KataTrainReservation
 {
     public class Seat : IEquatable<Seat>
     {
-        public Coach Coach { get; private set; }
-        public int SeatNumber { get; private set; }
+        public Coach Coach { get; }
+        public int SeatNumber { get;}
 
         public Seat(Coach coach, int seatNumber)
         {
-            this.Coach = coach;
-            this.SeatNumber = seatNumber;
+            Coach = coach;
+            SeatNumber = seatNumber;
         }
 
         public override bool Equals(object obj)

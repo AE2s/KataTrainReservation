@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace KataTrainReservation
 {
@@ -11,17 +9,13 @@ namespace KataTrainReservation
         public Coach(string coachId)
         {
             this.coachId = coachId;
-
         }
 
-        public string CoachId
-        {
-            get;
-        }
+        public string CoachId { get; }
 
         public int CompareTo(Coach other)
         {
-            return coachId.CompareTo(other.CoachId); 
+            return coachId.CompareTo(other.CoachId);
         }
 
         public override bool Equals(object obj)

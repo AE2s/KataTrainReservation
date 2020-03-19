@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace KataTrainReservation
@@ -8,14 +6,14 @@ namespace KataTrainReservation
     public class SeatService : ISeatService
     {
         private readonly ITrainSeats _trainSeats;
-        private readonly Dictionary<string, List<Seat>> seatsByTrain;
+        private readonly List<Train> trains;
         List<Seat> seatFilled;
 
         public SeatService(ITrainSeats trainSeats)
         {          
             seatFilled = new List<Seat>();
             _trainSeats = trainSeats;
-            seatsByTrain = _trainSeats.GetSeatsByTrain();
+            trains = _trainSeats.GetSeatsByTrain();
         }
 
         public void ConfirmReservation(List<Seat> seats)
@@ -24,11 +22,12 @@ namespace KataTrainReservation
         }
 
         public List<Seat> GetAvailableSeats(string trainId)
-        {            
-            if (!seatsByTrain.ContainsKey(trainId))
+        {
+            var train = trains.SingleOrDefault(x => x.TraindId == trainId);
+            if (train == null)
                 return new List<Seat>();
 
-            return seatsByTrain[trainId].Except(seatFilled).ToList();
+            return train.Seats.Except(seatFilled).ToList();
         }
     }
 }
