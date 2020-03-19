@@ -13,7 +13,7 @@ namespace KataTrainReservation
 
             string trainId="train1";
             ISeatService seatService = Substitute.For<ISeatService>();
-            seatService.GetAvailableSeats(trainId).Returns(new List<Seat>() { new Seat("01",1), new Seat("01", 2) });
+            seatService.GetAvailableSeats(trainId).Returns(new List<Seat>() { new Seat(new Coach("01"),1), new Seat(new Coach("01"), 2) });
             IBookingService bookingService = Substitute.For<IBookingService>();
             bookingService.GetBookingId().Returns("RES1");
             var reservationRequest = new ReservationRequest(trainId, 1);
@@ -30,8 +30,8 @@ namespace KataTrainReservation
             string trainId = "train1";
             ISeatService seatService = Substitute.For<ISeatService>();
             seatService.GetAvailableSeats(trainId).Returns(
-                new List<Seat>() { new Seat("01", 1), new Seat("01", 2)
-                , new Seat("01", 3), new Seat("01", 4), new Seat("01", 5), new Seat("01", 6)});
+                new List<Seat>() { new Seat(new Coach("01"), 1), new Seat(new Coach("01"), 2)
+                , new Seat(new Coach("01"), 3), new Seat(new Coach("01"), 4), new Seat(new Coach("01"), 5), new Seat(new Coach("01"), 6)});
             IBookingService bookingService = Substitute.For<IBookingService>();
             bookingService.GetBookingId().Returns("RES1");
             var reservationRequest = new ReservationRequest(trainId, 3);
@@ -48,7 +48,7 @@ namespace KataTrainReservation
             string trainId = "train1";
             ISeatService seatService = Substitute.For<ISeatService>();
             seatService.GetAvailableSeats(trainId).Returns(
-                new List<Seat>() { new Seat("01", 1), new Seat("01", 2)});
+                new List<Seat>() { new Seat(new Coach("01"), 1), new Seat(new Coach("01"), 2)});
             IBookingService bookingService = Substitute.For<IBookingService>();
             bookingService.GetBookingId().Returns("RES1");
             var reservationRequest = new ReservationRequest(trainId, 5);
@@ -65,9 +65,9 @@ namespace KataTrainReservation
             string trainId = "train1";
             ISeatService seatService = Substitute.For<ISeatService>();
             seatService.GetAvailableSeats(trainId).Returns(
-                 new List<Seat>() { new Seat("01", 1), new Seat("01", 2)
-                , new Seat("01", 3), new Seat("01", 4), new Seat("01", 5), new Seat("01", 6)
-                , new Seat("01", 7), new Seat("01", 8), new Seat("01", 9), new Seat("01", 10)
+                 new List<Seat>() { new Seat(new Coach("01"), 1), new Seat(new Coach("01"), 2)
+                , new Seat(new Coach("01"), 3), new Seat(new Coach("01"), 4), new Seat(new Coach("01"), 5), new Seat(new Coach("01"), 6)
+                , new Seat(new Coach("01"), 7), new Seat(new Coach("01"), 8), new Seat(new Coach("01"), 9), new Seat(new Coach("01"), 10)
                  });
             IBookingService bookingService = Substitute.For<IBookingService>();
             bookingService.GetBookingId().Returns("RES1");
@@ -86,9 +86,9 @@ namespace KataTrainReservation
             string trainId = "train1";
             ISeatService seatService = Substitute.For<ISeatService>();
             seatService.GetAvailableSeats(trainId).Returns(
-                 new List<Seat>() { new Seat("01", 1), new Seat("01", 2)
-                , new Seat("01", 3), new Seat("01", 4), new Seat("01", 5), new Seat("01", 6)
-                , new Seat("01", 7), new Seat("01", 8), new Seat("01", 9), new Seat("01", 10)
+                 new List<Seat>() { new Seat(new Coach("01"), 1), new Seat(new Coach("01"), 2)
+                , new Seat(new Coach("01"), 3), new Seat(new Coach("01"), 4), new Seat(new Coach("01"), 5), new Seat(new Coach("01"), 6)
+                , new Seat(new Coach("01"), 7), new Seat(new Coach("01"), 8), new Seat(new Coach("01"), 9), new Seat(new Coach("01"), 10)
                  });
             IBookingService bookingService = Substitute.For<IBookingService>();
             bookingService.GetBookingId().Returns("RES1");
