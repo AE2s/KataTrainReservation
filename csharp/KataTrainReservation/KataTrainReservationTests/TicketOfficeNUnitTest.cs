@@ -96,41 +96,9 @@ namespace KataTrainReservation
             var makeReservation = new TicketOffice(seatService, bookingService).MakeReservation(reservationRequest);
 
             Assert.IsNull(makeReservation);
-        }
+        }    
 
-        [Test]
-        public void Should_reserve_twice_when_seats_is_available()
-        {
-            string trainId = "train1";
-            ISeatService seatService = new SeatService(new TrainSeatsMock());           
-            IBookingService bookingService = Substitute.For<IBookingService>();
-            bookingService.GetBookingId().Returns("RES1");
-            var firstReservationRequest = new ReservationRequest(trainId, 3);
-            var secondReservationRequest = new ReservationRequest(trainId, 4);
-
-            var makeFirstReservation = new TicketOffice(seatService, bookingService).MakeReservation(firstReservationRequest);
-
-            var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
-
-            Assert.AreEqual(3, seatService.GetAvailableSeats(trainId).Count);
-        }
-
-        [Test]
-        public void Should_generate_different_booking_id_when_two_reservation_was_confirmed()
-        {
-            string trainId = "train1";
-            ISeatService seatService = new SeatService(new TrainSeatsMock());
-            IBookingService bookingService = new BookingService();           
-            var firstReservationRequest = new ReservationRequest(trainId, 3);
-            var secondReservationRequest = new ReservationRequest(trainId, 4);
-
-            var makeFirstReservation = new TicketOffice(seatService, bookingService).MakeReservation(firstReservationRequest);
-            var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
-
-           
-            Assert.AreNotEqual(makeFirstReservation.BookingId, makeSecondReservation.BookingId);
-        }
-
+     
         [Test]
         public void Should_make_reservation_twice_even_if_coach_over_70()
         {
@@ -144,6 +112,10 @@ namespace KataTrainReservation
 
             var makeSecondReservation = new TicketOffice(seatService, bookingService).MakeReservation(secondReservationRequest);
 
+            Assert.AreEqual(makeFirstReservation.Seats, new List<Seat>() {new Seat(new Coach("02"), 1), new Seat(new Coach("02"), 2)
+                , new Seat(new Coach("02"), 3), new Seat(new Coach("02"), 4), new Seat(new Coach("02"), 5), new Seat(new Coach("02"), 6) });
+            Assert.AreEqual(makeSecondReservation.Seats, new List<Seat>() {new Seat(new Coach("03"), 1), new Seat(new Coach("03"), 2)
+                , new Seat(new Coach("03"), 3), new Seat(new Coach("03"), 4) });
             Assert.AreEqual(10, seatService.GetAvailableSeats(trainId).Count);
         }
     }

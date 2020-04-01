@@ -27,7 +27,7 @@ namespace KataTrainReservation
             var coachs = orderedSeats.GroupBy(x => x.Coach);
             foreach (var seat in coachs)
             {
-                if (request.SeatCount <= seat.Count())
+                if (SeatsInCoachAreAvailable(request.SeatCount, seat.Count()))
                 {
                     reservedSeats = seat.ToList().GetRange(0, request.SeatCount);
                     _seatService.ConfirmReservation(reservedSeats);
@@ -36,6 +36,11 @@ namespace KataTrainReservation
             }
 
             return null;
+        }
+
+        private bool SeatsInCoachAreAvailable(int requestSeatCount, int freeCoachSeat)
+        {
+            return requestSeatCount <= freeCoachSeat * MAX_PERCENT_SEAT_FILL;
         }
 
         private bool CanFillTrainWith(int requestSeatCount, int freeTrainSeat)
